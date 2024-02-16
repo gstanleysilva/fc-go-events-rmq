@@ -36,7 +36,7 @@ func (ed *EventDispatcher) Register(eventName string, handler EventHandlerInterf
 	return nil
 }
 
-func (ed *EventDispatcher) Dispatch(event Event) error {
+func (ed *EventDispatcher) Dispatch(event EventInterface) error {
 	if handlers, ok := ed.handlers[event.GetName()]; ok {
 		wg := &sync.WaitGroup{}
 		for _, handler := range handlers {

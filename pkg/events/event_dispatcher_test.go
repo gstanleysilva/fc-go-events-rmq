@@ -31,7 +31,7 @@ type TestEventHandler struct {
 	ID int
 }
 
-func (th *TestEventHandler) Handle(event Event, wg *sync.WaitGroup) {}
+func (th *TestEventHandler) Handle(event EventInterface, wg *sync.WaitGroup) {}
 
 type EventDispatcherTestSuite struct {
 	suite.Suite
@@ -132,7 +132,7 @@ type MockHandler struct {
 	mock.Mock
 }
 
-func (m *MockHandler) Handle(event Event, wg *sync.WaitGroup) {
+func (m *MockHandler) Handle(event EventInterface, wg *sync.WaitGroup) {
 	m.Called(event)
 	wg.Done()
 }

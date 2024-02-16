@@ -43,7 +43,7 @@ func Consume(ch *amqp.Channel, out chan<- amqp.Delivery, queue string) error {
 	return nil
 }
 
-func Publish(ch *amqp.Channel, body string, exName string) error {
+func Publish(ch *amqp.Channel, body []byte, exName string) error {
 	err := ch.PublishWithContext(context.Background(),
 		exName,
 		"",
@@ -51,7 +51,7 @@ func Publish(ch *amqp.Channel, body string, exName string) error {
 		false,
 		amqp.Publishing{
 			ContentType: "text/plain",
-			Body:        []byte(body),
+			Body:        body,
 		},
 	)
 	if err != nil {
